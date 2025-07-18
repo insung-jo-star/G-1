@@ -184,7 +184,7 @@
         return false;
       }
       // 한글 필드명으로 payload 작성
-      const payload = {
+const payload = {
   "성함": name,
   "전화번호": phone,
   "상담 예약 시간": reserveTime,
@@ -193,7 +193,7 @@
 fetch("https://airtable-proxy-sand.vercel.app/api/submit", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
-  body: JSON.stringify(payload)  // ⭕️ 그냥 평탄하게 보냄 (fields key 없이)
+  body: JSON.stringify({ fields: payload }) // ❌ 이렇게 보내면 안됨
 })
 .then(res => res.json())
 .then(data => {
