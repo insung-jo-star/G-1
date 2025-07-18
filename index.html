@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>분양상담사 DB광고용 자체폼</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
+  <style>
+    body {
+      background: #f8fafc;
+      font-family: 'Pretendard', Arial, sans-serif;
+    }
+    .card-box {
+      width: 100%;
+      max-width: 420px;
+      margin: 48px auto 0 auto;
+      border-radius: 18px;
+      background: #fff;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.11);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+    }
+    .banner-area {
+      width: 100%;
+      aspect-ratio: 3/2; /* 가로:세로 3:2로 적용 */
+      background: #212533;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .banner-area img {
+      width: 100%; height: 100%; object-fit: cover;
+      display: block;
+    }
+    .swiper-wrap-area {
+      width: 100%;
+      aspect-ratio: 420/500;
+      background: #d9e2ec;
+    }
+    .swiper-container {
+      width: 100%;
+      height: 100%;
+      border-radius: 0;
+      background: #fff;
+    }
+    .swiper-slide img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      background: #eee;
+      border-radius: 0;
+      aspect-ratio: 420/500;
+    }
+    .form-area {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 28px 28px 20px 28px;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .form-area label { font-weight: 600; margin-bottom: 3px; }
+    .form-area input[type="text"],
+    .form-area input[type="tel"] {
+      width: 100%;
+      padding: 13px 14px;
+      border: 1.5px solid #dde1e7;
+      border-radius: 8px;
+      font-size: 1.07rem;
+      background: #f5f7fa;
+      transition: border 0.2s, box-shadow 0.2s;
+      box-sizing: border-box;
+      outline: none;
+      margin-bottom: 0;
+    }
+    .form-area input:focus {
+      border: 1.5px solid #2563eb;
+      background: #fff;
+    }
+    .agree-wrap {
+      background: #f8fafc;
+      border: 1px solid #e3e6ed;
+      border-radius: 8px;
+      padding: 12px 14px 8px 14px;
+      margin-bottom: 8px;
+      font-size: 0.97rem;
+      color: #222b44;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .agree-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .agree-label {
+      font-weight: 600;
+      margin: 0;
+      display: block;
+      line-height: 1.7;
+      color: #222b44;
+    }
+    .agree-link {
+      color: #2663ee;
+      font-weight: 600;
+      font-size: 0.98em;
+      cursor: pointer;
+      text-decoration: underline;
+      border: none;
+      background: none;
+      padding: 0;
+      transition: color 0.13s;
+      outline: none;
+      letter-spacing: -0.01em;
+      display: inline-block;
+      vertical-align: middle;
+      white-space:nowrap;
+      margin-left: 0;
+      margin-top: 1px;
+    }
+    .agree-link:focus,
+    .agree-link:hover {
+      color: #1436ae;
+      text-decoration: underline;
+    }
+    .agree-detail {
+      margin-top: 9px;
+      padding: 11px 8px 3px 2px;
+      background: #f3f5fa;
+      border-radius: 7px;
+      color: #525f77;
+      font-size: 0.95rem;
+      display: none;
+      line-height: 1.7;
+    }
+    .agree-detail.show {
+      display: block;
+      animation: fadeIn 0.28s;
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(-10px);}
+      100% { opacity: 1; transform: translateY(0);}
+    }
+    .form-area button {
+      width: 100%;
+      padding: 15px 0;
+      margin-top: 6px;
+      background: #2563eb;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.13rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.18s;
+      letter-spacing: 0.01em;
+    }
+    .form-area button:hover { background: #174eb6; }
+    @media (max-width: 480px) {
+      .card-box { max-width: 98vw; }
+      .banner-area { aspect-ratio: 3/2; }
+      .swiper-wrap-area { aspect-ratio: 4/5; }
+      .form-area { padding: 18px 10px 10px 10px; }
+      .agree-wrap { font-size: 0.94rem; }
+      .agree-label { font-size: 0.98em; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card-box">
+    <!-- 배너 영역 (3:2 비율) -->
+    <div class="banner-area">
+      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="배너" />
+    </div>
+    <!-- Swiper 이미지 영역 -->
+    <div class="swiper-wrap-area">
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=840&q=80" alt="광고1" /></div>
+          <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=840&q=80" alt="광고2" /></div>
+          <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=840&q=80" alt="광고3" /></div>
+          <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=840&q=80" alt="광고4" /></div>
+          <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3cd6?auto=format&fit=crop&w=840&q=80" alt="광고5" /></div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+    </div>
+    <!-- 입력폼 영역 -->
+    <form class="form-area" autocomplete="off" onsubmit="return validateAgree(event)">
+      <label for="name">성함</label>
+      <input type="text" id="name" name="name" placeholder="이름 입력" required />
+      <label for="phone">연락처</label>
+      <input type="tel" id="phone" name="phone" placeholder="010-0000-0000" pattern="^01[016789]-\d{3,4}-\d{4}$" required />
+
+      <!-- 개인정보 동의 체크+펼침 -->
+      <div class="agree-wrap">
+        <div class="agree-row">
+          <input type="checkbox" id="agreeChk" required style="margin-top:3px;" />
+          <div>
+            <label for="agreeChk" class="agree-label">
+              개인정보 수집·이용 및 제3자 제공 동의 <span style="color:#ee2020;">(필수)</span>
+            </label>
+            <span class="agree-link" onclick="toggleDetail()" tabindex="0" role="button" aria-expanded="false">[더보기]</span>
+          </div>
+        </div>
+        <div id="agreeDetail" class="agree-detail" aria-hidden="true">
+          <b>■ 개인정보 수집·이용 및 제3자 제공 안내</b><br>
+          1. <b>수집항목</b> : 성함, 연락처<br>
+          2. <b>수집·이용목적</b> : 분양상담, 안내, 사은품 지급, 서비스 품질관리<br>
+          3. <b>보유·이용기간</b> : 상담 완료일로부터 1년 후 즉시 파기<br>
+          4. <b>제공받는 자</b> : 분양사무소, 제휴/협력업체 등<br>
+          5. <b>제공목적</b> : 분양상담, 안내, 사은품 발송 등<br>
+          6. <b>동의거부 권리 및 불이익</b> : 귀하는 동의를 거부할 권리가 있으며, 동의 거부 시 상담 및 혜택 안내가 제한될 수 있습니다.<br>
+        </div>
+      </div>
+
+      <button type="submit">상담 신청</button>
+    </form>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+  <script>
+    const swiper = new Swiper('.swiper-container', {
+      effect: "coverflow",
+      grabCursor: true,
+      centeredSlides: true,
+      slidesPerView: "auto",
+      coverflowEffect: {
+        rotate: 20,
+        stretch: 0,
+        depth: 180,
+        modifier: 1,
+        slideShadows: false,
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      loop: true,
+    });
+
+    function toggleDetail() {
+      const detail = document.getElementById('agreeDetail');
+      const btn = document.querySelector('.agree-link');
+      const isOpen = detail.classList.contains('show');
+      if (isOpen) {
+        detail.classList.remove('show');
+        btn.innerText = '[더보기]';
+        btn.setAttribute('aria-expanded', 'false');
+        detail.setAttribute('aria-hidden', 'true');
+      } else {
+        detail.classList.add('show');
+        btn.innerText = '[닫기]';
+        btn.setAttribute('aria-expanded', 'true');
+        detail.setAttribute('aria-hidden', 'false');
+      }
+    }
+
+    function validateAgree(e) {
+      if (!document.getElementById('agreeChk').checked) {
+        alert('개인정보 수집·이용 및 제3자 제공에 동의해야 상담 신청이 가능합니다.');
+        e.preventDefault();
+        return false;
+      }
+      return true;
+    }
+  </script>
+</body>
+</html>
