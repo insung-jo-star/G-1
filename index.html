@@ -188,7 +188,7 @@ const payload = {
   "성함": name,
   "전화번호": phone,
   "상담 예약 시간": reserveTime,
-  "날짜": new Date().toISOString()
+  "날짜": new Date().toISOString().split('T')[0]  // "2025-07-18" 형식으로 잘림
 };
 fetch("https://airtable-proxy-sand.vercel.app/api/submit", {
   method: "POST",
