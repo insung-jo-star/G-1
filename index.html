@@ -193,20 +193,18 @@
       fetch("https://airtable-proxy-sand.vercel.app/api/submit", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
-  body: JSON.stringify(data),
+  body: JSON.stringify({ fields: payload })  // 올바른 변수명과 구조 사용
+})
+.then(res => res.json())
+.then(data => {
+  console.log('[상담신청 완료] 응답:', data);
+  alert("상담 신청이 정상적으로 접수되었습니다.");
+  document.getElementById('consultForm').reset();
+})
+.catch(error => {
+  console.error('[상담신청 에러]', error);
+  alert("신청 중 오류가 발생했습니다. (F12에서 에러 확인)");
 });
-    body: JSON.stringify({ fields: payload })
-  })
-      .then(res => res.json())
-      .then(data => {
-        console.log('[상담신청 완료] 응답:', data);
-        alert("상담 신청이 정상적으로 접수되었습니다.");
-        document.getElementById('consultForm').reset();
-      })
-      .catch(error => {
-        console.error('[상담신청 에러]', error);
-        alert("신청 중 오류가 발생했습니다. (F12에서 에러 확인)");
-      });
     });
   </script>
 </body>
