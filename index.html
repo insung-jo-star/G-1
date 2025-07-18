@@ -193,7 +193,7 @@
       fetch("https://airtable-proxy-sand.vercel.app/api/submit", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ fields: payload })
+  body: JSON.stringify(payload)  // ← 올바름! "fields" 없이 바로 보냄
 })
 .then(res => res.json())
 .then(data => {
