@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
   <style>
     body {
-      background: #f8fafc;
+      background: #111 !important;
       font-family: 'Pretendard', Arial, sans-serif;
     }
     .card-box {
@@ -16,7 +16,7 @@
       margin: 48px auto 0 auto;
       border-radius: 18px;
       background: #fff;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.11);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.17);
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -24,7 +24,7 @@
     }
     .banner-area {
       width: 100%;
-      aspect-ratio: 3/2; /* 가로:세로 3:2로 적용 */
+      aspect-ratio: 3/2;
       background: #212533;
       display: flex;
       align-items: center;
@@ -38,21 +38,98 @@
     .swiper-wrap-area {
       width: 100%;
       aspect-ratio: 420/500;
-      background: #d9e2ec;
+      background: #222;
+      position: relative;
+      padding-bottom: 32px;
     }
     .swiper-container {
       width: 100%;
       height: 100%;
       border-radius: 0;
-      background: #fff;
+      background: #181818;
+      position: relative;
     }
     .swiper-slide img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      display: block;
-      background: #eee;
-      border-radius: 0;
+      width: 100%;
+      height: 100%;
       aspect-ratio: 420/500;
+      object-fit: cover;     /* 비율 자동 맞춤 */
+      object-position: center;
+      background: #191919;
+      display: block;
+      border-radius: 0;
+    }
+    .swiper-pagination {
+      bottom: -26px !important;
+      position: absolute !important;
+      left: 0; right: 0;
+      width: 100%;
+      z-index: 10;
+      pointer-events: auto;
+    }
+    .swiper-pagination-bullet {
+      width: 9px;
+      height: 9px;
+      margin: 0 3px !important;
+      border-radius: 50%;
+      background: radial-gradient(circle at 60% 35%, #FFF8DC 40%, #FFD700 70%, #D4AF37 100%);
+      box-shadow: 0 0 4px #ffd700bb, 0 0 1px #D4AF37, 0 1px 0 #fffbe6;
+      opacity: 1;
+      border: 1.4px solid #d4af37;
+      transition: transform 0.17s, box-shadow 0.2s;
+    }
+    .swiper-pagination-bullet-active {
+      background: radial-gradient(circle at 55% 30%, #fffbe6 30%, #FFD700 68%, #bfa333 100%);
+      box-shadow: 0 0 12px 3px #ffe066bb, 0 0 2px #FFD700, 0 2px 0 #fffbe6;
+      border: 1.7px solid #FFD700;
+      transform: scale(1.35);
+      opacity: 1;
+    }
+    .swiper-button-next,
+    .swiper-button-prev {
+      color: transparent !important;
+      background: none !important;
+      width: 46px; height: 46px;
+      top: 50%;
+      transform: translateY(-50%);
+      border: none !important;
+      box-shadow: none !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      transition: filter 0.15s;
+      cursor: pointer;
+    }
+    .swiper-button-next:hover,
+    .swiper-button-prev:hover {
+      filter: drop-shadow(0 0 10px #ffd70099) drop-shadow(0 0 2px #fffbe6);
+    }
+    .swiper-button-next::after,
+    .swiper-button-prev::after {
+      content: '';
+      display: block;
+      width: 34px;
+      height: 34px;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
+    .swiper-button-next::after {
+      background-image: url('data:image/svg+xml;utf8,<svg width=\"34\" height=\"34\" viewBox=\"0 0 34 34\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><defs><linearGradient id=\"gold1\" x1=\"0\" y1=\"0\" x2=\"34\" y2=\"34\" gradientUnits=\"userSpaceOnUse\"><stop stop-color=\"%23FFF8DC\"/><stop offset=\"0.33\" stop-color=\"%23FFD700\"/><stop offset=\"0.66\" stop-color=\"%23D4AF37\"/><stop offset=\"1\" stop-color=\"%23FFFBE6\"/></linearGradient></defs><path d=\"M10 7 L24 17 L10 27\" stroke=\"url(%23gold1)\" stroke-width=\"4.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>');
+    }
+    .swiper-button-prev::after {
+      background-image: url('data:image/svg+xml;utf8,<svg width=\"34\" height=\"34\" viewBox=\"0 0 34 34\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><defs><linearGradient id=\"gold2\" x1=\"34\" y1=\"0\" x2=\"0\" y2=\"34\" gradientUnits=\"userSpaceOnUse\"><stop stop-color=\"%23FFF8DC\"/><stop offset=\"0.33\" stop-color=\"%23FFD700\"/><stop offset=\"0.66\" stop-color=\"%23D4AF37\"/><stop offset=\"1\" stop-color=\"%23FFFBE6\"/></linearGradient></defs><path d=\"M24 7 L10 17 L24 27\" stroke=\"url(%23gold2)\" stroke-width=\"4.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>');
+    }
+    @media (max-width: 480px) {
+      .card-box { max-width: 98vw; }
+      .banner-area { aspect-ratio: 3/2; }
+      .swiper-wrap-area { aspect-ratio: 4/5; }
+      .swiper-button-next, .swiper-button-prev { width: 30px; height: 30px; }
+      .swiper-button-next::after, .swiper-button-prev::after { width: 20px; height: 20px; }
+      .swiper-pagination { bottom: -19px !important;}
+      .swiper-pagination-bullet { width: 7px; height: 7px; margin: 0 2px !important; }
+      .swiper-pagination-bullet-active { transform: scale(1.21);}
     }
     .form-area {
       width: 100%;
@@ -63,23 +140,72 @@
       flex-direction: column;
       gap: 12px;
     }
-    .form-area label { font-weight: 600; margin-bottom: 3px; }
-    .form-area input[type="text"],
-    .form-area input[type="tel"] {
+    .form-area label { font-weight: 700; margin-bottom: 3px; font-size: 1.06rem;}
+    .form-area input[type="text"], .form-area input[type="tel"], .form-area select {
       width: 100%;
       padding: 13px 14px;
-      border: 1.5px solid #dde1e7;
+      border: 1.7px solid #e5c100;
       border-radius: 8px;
-      font-size: 1.07rem;
-      background: #f5f7fa;
-      transition: border 0.2s, box-shadow 0.2s;
+      font-size: 1.08rem;
+      background: #fff;
+      color: #222;
+      font-weight: 700;
+      transition: border 0.19s, background 0.18s;
       box-sizing: border-box;
       outline: none;
       margin-bottom: 0;
+      letter-spacing: 0.02em;
     }
-    .form-area input:focus {
-      border: 1.5px solid #2563eb;
-      background: #fff;
+    .form-area input:focus, .form-area select:focus {
+      border: 1.9px solid #FFD700;
+      background: #fffbe6;
+      color: #bfa333;
+    }
+    .form-area select {
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml;utf8,<svg fill='gray' height='16' viewBox='0 0 24 24' width='16' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      background-size: 19px;
+    }
+    .form-area button {
+      width: 100%;
+      padding: 17px 0 15px 0;
+      margin-top: 10px;
+      background: linear-gradient(95deg, #FFD700 0%, #fffbe6 31%, #FFD700 71%, #d4af37 100%);
+      color: #201b05;
+      font-size: 1.22rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      border: 2.5px solid #bfa333;
+      border-radius: 10px;
+      box-shadow: 0 2px 18px #fffbe6cc, 0 0 9px #ffd70099;
+      text-shadow: 0 1.5px 3px #fffbe6b5, 0 1px 0px #fff;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: background 0.19s, box-shadow 0.16s, color 0.13s, border 0.13s;
+    }
+    .form-area button::after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 9px; left: 7%;
+      width: 86%;
+      height: 19%;
+      background: linear-gradient(90deg,rgba(255,255,255,0.78) 0%,rgba(255,255,255,0.11) 100%);
+      border-radius: 11px 11px 9px 9px;
+      opacity: 0.5;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .form-area button:hover {
+      background: linear-gradient(92deg, #fffbe6 0%, #FFD700 44%, #ffd700 98%, #fffbe6 100%);
+      color: #6c5300;
+      box-shadow: 0 5px 19px #ffe066, 0 0 8px #fffbe6c9;
+      border-color: #FFD700;
     }
     .agree-wrap {
       background: #f8fafc;
@@ -99,15 +225,15 @@
       gap: 8px;
     }
     .agree-label {
-      font-weight: 600;
+      font-weight: 700;
       margin: 0;
       display: block;
       line-height: 1.7;
       color: #222b44;
     }
     .agree-link {
-      color: #2663ee;
-      font-weight: 600;
+      color: #FFD700;
+      font-weight: 700;
       font-size: 0.98em;
       cursor: pointer;
       text-decoration: underline;
@@ -125,7 +251,7 @@
     }
     .agree-link:focus,
     .agree-link:hover {
-      color: #1436ae;
+      color: #FFD700;
       text-decoration: underline;
     }
     .agree-detail {
@@ -146,22 +272,8 @@
       0% { opacity: 0; transform: translateY(-10px);}
       100% { opacity: 1; transform: translateY(0);}
     }
-    .form-area button {
-      width: 100%;
-      padding: 15px 0;
-      margin-top: 6px;
-      background: #2563eb;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      font-size: 1.13rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background 0.18s;
-      letter-spacing: 0.01em;
-    }
-    .form-area button:hover { background: #174eb6; }
     @media (max-width: 480px) {
+      body { background: #181818 !important;}
       .card-box { max-width: 98vw; }
       .banner-area { aspect-ratio: 3/2; }
       .swiper-wrap-area { aspect-ratio: 4/5; }
@@ -175,17 +287,17 @@
   <div class="card-box">
     <!-- 배너 영역 (3:2 비율) -->
     <div class="banner-area">
-      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="배너" />
+      <img src="banner.jpg" alt="배너" />
     </div>
     <!-- Swiper 이미지 영역 -->
     <div class="swiper-wrap-area">
       <div class="swiper-container">
         <div class="swiper-wrapper">
-          <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=840&q=80" alt="광고1" /></div>
-          <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=840&q=80" alt="광고2" /></div>
-          <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=840&q=80" alt="광고3" /></div>
-          <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=840&q=80" alt="광고4" /></div>
-          <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3cd6?auto=format&fit=crop&w=840&q=80" alt="광고5" /></div>
+          <div class="swiper-slide"><img src="slide1.jpg" alt="광고1" /></div>
+          <div class="swiper-slide"><img src="slide2.jpg" alt="광고2" /></div>
+          <div class="swiper-slide"><img src="slide3.jpg" alt="광고3" /></div>
+          <div class="swiper-slide"><img src="slide4.jpg" alt="광고4" /></div>
+          <div class="swiper-slide"><img src="slide5.jpg" alt="광고5" /></div>
         </div>
         <div class="swiper-pagination"></div>
         <div class="swiper-button-next"></div>
@@ -197,8 +309,26 @@
       <label for="name">성함</label>
       <input type="text" id="name" name="name" placeholder="이름 입력" required />
       <label for="phone">연락처</label>
-      <input type="tel" id="phone" name="phone" placeholder="010-0000-0000" pattern="^01[016789]-\d{3,4}-\d{4}$" required />
-
+      <input type="tel" id="phone" name="phone" placeholder="010-0000-0000" pattern="^01[016789]-\\d{3,4}-\\d{4}$" required />
+      <label for="reserveTime">상담 예약 시간</label>
+      <select id="reserveTime" name="reserveTime" required>
+        <option value="" disabled selected>시간 선택</option>
+        <option value="08">08시</option>
+        <option value="09">09시</option>
+        <option value="10">10시</option>
+        <option value="11">11시</option>
+        <option value="12">12시</option>
+        <option value="13">13시</option>
+        <option value="14">14시</option>
+        <option value="15">15시</option>
+        <option value="16">16시</option>
+        <option value="17">17시</option>
+        <option value="18">18시</option>
+        <option value="19">19시</option>
+        <option value="20">20시</option>
+        <option value="21">21시</option>
+        <option value="22">22시</option>
+      </select>
       <!-- 개인정보 동의 체크+펼침 -->
       <div class="agree-wrap">
         <div class="agree-row">
@@ -220,7 +350,6 @@
           6. <b>동의거부 권리 및 불이익</b> : 귀하는 동의를 거부할 권리가 있으며, 동의 거부 시 상담 및 혜택 안내가 제한될 수 있습니다.<br>
         </div>
       </div>
-
       <button type="submit">상담 신청</button>
     </form>
   </div>
