@@ -190,11 +190,11 @@
         "상담 예약 시간": reserveTime,
         "날짜": new Date().toISOString()
       };
-      fetch("airtable-proxy-sand.vercel.app", {  // ← 여기!
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
+      fetch("https://airtable-proxy-sand.vercel.app/api/submit", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(data),
+});
     body: JSON.stringify({ fields: payload })
   })
       .then(res => res.json())
