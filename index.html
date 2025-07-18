@@ -190,14 +190,13 @@
         "상담 예약 시간": reserveTime,
         "날짜": new Date().toISOString()
       };
-      fetch(AIRTABLE_API_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer " + AIRTABLE_API_KEY
-        },
-        body: JSON.stringify({ fields: payload })
-      })
+      fetch("/api/submit", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify(payload)
+})
       .then(res => res.json())
       .then(data => {
         console.log('[상담신청 완료] 응답:', data);
